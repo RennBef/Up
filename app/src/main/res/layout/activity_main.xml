@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+Корневой контейнер ConstraintLayout.
+Он позволяет гибко позиционировать элементы на экране, привязывая их
+стороны друг к другу («нити»).
+-->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <!--
+    КНОПКА 1: «Кликни меня!»
+    android:id - задает уникальное имя кнопке, по которому мы найдем её в Kotlin-коде.
+    layout_width / layout_height со значением wrap_content сжимают кнопку строго под размер её текста.
+    app:layout_constraint... - центрируют кнопку ровно посередине экрана,
+    привязывая её ко всем 4 краям родителя.
+    -->
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Кликни меня!"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--
+    КОНТЕЙНЕР ДЛЯ ИЗОБРАЖЕНИЯ (ImageView)
+    android:src - указывает путь к картинке my_photo, которую мы ранее загрузили в папку res/drawable.
+    android:visibility="gone" - КРИТИЧЕСКИ ВАЖНО: элемент полностью скрыт
+    при запуске и не занимает места на экране.
+    Элемент привязан верхним краем к нижней части (toBottomOf) кнопки
+    button, чтобы появиться строго под ней.
+    -->
+    <ImageView
+        android:id="@+id/myImageView"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:visibility="gone"
+        android:src="@drawable/my_photo"
+        app:layout_constraintBottom_toTopOf="@+id/buttonClose"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button" />
+
+    <!--
+    КНОПКА 2: «Закрыть» (Добавлена в рамках самостоятельной работы)
+    Изначально также имеет статус visibility="gone" (невидима).
+    Располагается в самом низу экрана, поджимаемая картинкой сверху,
+    создавая аккуратный вертикальный список.
+    -->
+    <Button
+        android:id="@+id/buttonClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Закрыть"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/myImageView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
